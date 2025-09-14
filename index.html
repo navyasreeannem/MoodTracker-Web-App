@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Tracker - How are you feeling today?</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background-animation"></div>
+    
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1 class="main-title">How are you feeling today?</h1>
+            <p class="subtitle">Track your daily moods and reflect on your emotional journey</p>
+        </header>
+
+        <!-- Mood Selection Section -->
+        <section class="mood-section">
+            <h2 class="section-title">Choose your mood</h2>
+            <div class="mood-buttons">
+                <button class="mood-btn calm" data-mood="calm">
+                    <span class="mood-emoji">😌</span>
+                    <span class="mood-text">Calm</span>
+                </button>
+                <button class="mood-btn relaxed" data-mood="relaxed">
+                    <span class="mood-emoji">😊</span>
+                    <span class="mood-text">Relaxed</span>
+                </button>
+                <button class="mood-btn happy" data-mood="happy">
+                    <span class="mood-emoji">😍</span>
+                    <span class="mood-text">Happy</span>
+                </button>
+                <button class="mood-btn dreamy" data-mood="dreamy">
+                    <span class="mood-emoji">🌙</span>
+                    <span class="mood-text">Dreamy</span>
+                </button>
+                <button class="mood-btn focused" data-mood="focused">
+                    <span class="mood-emoji">🎯</span>
+                    <span class="mood-text">Focused</span>
+                </button>
+                <button class="mood-btn excited" data-mood="excited">
+                    <span class="mood-emoji">🤩</span>
+                    <span class="mood-text">Excited</span>
+                </button>
+                <button class="mood-btn grateful" data-mood="grateful">
+                    <span class="mood-emoji">🙏</span>
+                    <span class="mood-text">Grateful</span>
+                </button>
+                <button class="mood-btn peaceful" data-mood="peaceful">
+                    <span class="mood-emoji">🕊️</span>
+                    <span class="mood-text">Peaceful</span>
+                </button>
+                <button class="mood-btn energetic" data-mood="energetic">
+                    <span class="mood-emoji">⚡</span>
+                    <span class="mood-text">Energetic</span>
+                </button>
+                <button class="mood-btn creative" data-mood="creative">
+                    <span class="mood-emoji">🎨</span>
+                    <span class="mood-text">Creative</span>
+                </button>
+                <button class="mood-btn confident" data-mood="confident">
+                    <span class="mood-emoji">💪</span>
+                    <span class="mood-text">Confident</span>
+                </button>
+                <button class="mood-btn nostalgic" data-mood="nostalgic">
+                    <span class="mood-emoji">📸</span>
+                    <span class="mood-text">Nostalgic</span>
+                </button>
+                <button class="mood-btn motivated" data-mood="motivated">
+                    <span class="mood-emoji">🚀</span>
+                    <span class="mood-text">Motivated</span>
+                </button>
+                <button class="mood-btn content" data-mood="content">
+                    <span class="mood-emoji">😌</span>
+                    <span class="mood-text">Content</span>
+                </button>
+                <button class="mood-btn inspired" data-mood="inspired">
+                    <span class="mood-emoji">✨</span>
+                    <span class="mood-text">Inspired</span>
+                </button>
+                <button class="mood-btn playful" data-mood="playful">
+                    <span class="mood-emoji">🎪</span>
+                    <span class="mood-text">Playful</span>
+                </button>
+                <button class="mood-btn reflective" data-mood="reflective">
+                    <span class="mood-emoji">🤔</span>
+                    <span class="mood-text">Reflective</span>
+                </button>
+                <button class="mood-btn adventurous" data-mood="adventurous">
+                    <span class="mood-emoji">🗺️</span>
+                    <span class="mood-text">Adventurous</span>
+                </button>
+                <button class="mood-btn loving" data-mood="loving">
+                    <span class="mood-emoji">💕</span>
+                    <span class="mood-text">Loving</span>
+                </button>
+                <button class="mood-btn hopeful" data-mood="hopeful">
+                    <span class="mood-emoji">🌈</span>
+                    <span class="mood-text">Hopeful</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Today's Entry Section -->
+        <section class="today-section">
+            <h2 class="section-title">Today's Entry</h2>
+            <div class="today-card" id="todayCard">
+                <p class="no-entry">No mood recorded for today yet</p>
+            </div>
+        </section>
+
+        <!-- Past Moods Section -->
+        <section class="past-moods-section">
+            <h2 class="section-title">Your Mood History</h2>
+            <div class="mood-timeline" id="moodTimeline">
+                <p class="no-history">No mood history yet. Start tracking your feelings!</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,597 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #FEEAFA 0%, #DEE2FF 50%, #EFD3D7 100%);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Animated Background */
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg, #FEEAFA, #DEE2FF, #EFD3D7, #CBC0D3);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    z-index: -1;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Main Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Header Styles */
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.main-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #8E9AAF;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(142, 154, 175, 0.1);
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #8E9AAF;
+    opacity: 0.8;
+    font-weight: 300;
+}
+
+/* Section Styles */
+.mood-section,
+.today-section,
+.past-moods-section {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 32px rgba(142, 154, 175, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #8E9AAF;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Mood Buttons */
+.mood-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.75rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.mood-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.25rem 0.75rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    min-height: 80px;
+}
+
+.mood-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.mood-btn:hover::before {
+    transform: translateX(100%);
+}
+
+.mood-emoji {
+    font-size: 1.75rem;
+    margin-bottom: 0.4rem;
+    display: block;
+}
+
+.mood-text {
+    font-size: 0.9rem;
+    color: white;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.2;
+}
+
+/* Individual Mood Button Colors */
+.mood-btn.calm {
+    background: linear-gradient(135deg, #8E9AAF, #CBC0D3);
+}
+
+.mood-btn.calm:hover {
+    background: linear-gradient(135deg, #7A8BA0, #B8AEC8);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(142, 154, 175, 0.3);
+}
+
+.mood-btn.relaxed {
+    background: linear-gradient(135deg, #CBC0D3, #EFD3D7);
+}
+
+.mood-btn.relaxed:hover {
+    background: linear-gradient(135deg, #B8AEC8, #E8C8CD);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(203, 192, 211, 0.3);
+}
+
+.mood-btn.happy {
+    background: linear-gradient(135deg, #EFD3D7, #FEEAFA);
+}
+
+.mood-btn.happy:hover {
+    background: linear-gradient(135deg, #E8C8CD, #FDE0F5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(239, 211, 215, 0.3);
+}
+
+.mood-btn.dreamy {
+    background: linear-gradient(135deg, #FEEAFA, #DEE2FF);
+}
+
+.mood-btn.dreamy:hover {
+    background: linear-gradient(135deg, #FDE0F5, #D1D7FF);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(254, 234, 250, 0.3);
+}
+
+.mood-btn.focused {
+    background: linear-gradient(135deg, #DEE2FF, #8E9AAF);
+}
+
+.mood-btn.focused:hover {
+    background: linear-gradient(135deg, #D1D7FF, #7A8BA0);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(222, 226, 255, 0.3);
+}
+
+.mood-btn.excited {
+    background: linear-gradient(135deg, #FFB3BA, #FFDFBA);
+}
+
+.mood-btn.excited:hover {
+    background: linear-gradient(135deg, #FFA5AC, #FFD4A5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 179, 186, 0.3);
+}
+
+.mood-btn.grateful {
+    background: linear-gradient(135deg, #FFDFBA, #BAFFC9);
+}
+
+.mood-btn.grateful:hover {
+    background: linear-gradient(135deg, #FFD4A5, #A5FFB3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 223, 186, 0.3);
+}
+
+.mood-btn.peaceful {
+    background: linear-gradient(135deg, #BAFFC9, #BAE1FF);
+}
+
+.mood-btn.peaceful:hover {
+    background: linear-gradient(135deg, #A5FFB3, #A5D4FF);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(186, 255, 201, 0.3);
+}
+
+.mood-btn.energetic {
+    background: linear-gradient(135deg, #BAE1FF, #E6B3FF);
+}
+
+.mood-btn.energetic:hover {
+    background: linear-gradient(135deg, #A5D4FF, #D4A5FF);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(186, 225, 255, 0.3);
+}
+
+.mood-btn.creative {
+    background: linear-gradient(135deg, #E6B3FF, #FFB3E6);
+}
+
+.mood-btn.creative:hover {
+    background: linear-gradient(135deg, #D4A5FF, #FFA5D4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(230, 179, 255, 0.3);
+}
+
+.mood-btn.confident {
+    background: linear-gradient(135deg, #FFB3E6, #D4A5A5);
+}
+
+.mood-btn.confident:hover {
+    background: linear-gradient(135deg, #FFA5D4, #C49595);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 179, 230, 0.3);
+}
+
+.mood-btn.nostalgic {
+    background: linear-gradient(135deg, #D4A5A5, #A5D4A5);
+}
+
+.mood-btn.nostalgic:hover {
+    background: linear-gradient(135deg, #C49595, #95C495);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 165, 165, 0.3);
+}
+
+.mood-btn.motivated {
+    background: linear-gradient(135deg, #A5D4A5, #A5A5D4);
+}
+
+.mood-btn.motivated:hover {
+    background: linear-gradient(135deg, #95C495, #9595C4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(165, 212, 165, 0.3);
+}
+
+.mood-btn.content {
+    background: linear-gradient(135deg, #A5A5D4, #D4D4A5);
+}
+
+.mood-btn.content:hover {
+    background: linear-gradient(135deg, #9595C4, #C4C495);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(165, 165, 212, 0.3);
+}
+
+.mood-btn.inspired {
+    background: linear-gradient(135deg, #D4D4A5, #FFA5A5);
+}
+
+.mood-btn.inspired:hover {
+    background: linear-gradient(135deg, #C4C495, #FF9595);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 212, 165, 0.3);
+}
+
+.mood-btn.playful {
+    background: linear-gradient(135deg, #FFA5A5, #A5FFA5);
+}
+
+.mood-btn.playful:hover {
+    background: linear-gradient(135deg, #FF9595, #95FF95);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 165, 165, 0.3);
+}
+
+.mood-btn.reflective {
+    background: linear-gradient(135deg, #A5FFA5, #A5A5FF);
+}
+
+.mood-btn.reflective:hover {
+    background: linear-gradient(135deg, #95FF95, #9595FF);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(165, 255, 165, 0.3);
+}
+
+.mood-btn.adventurous {
+    background: linear-gradient(135deg, #A5A5FF, #FFA5FF);
+}
+
+.mood-btn.adventurous:hover {
+    background: linear-gradient(135deg, #9595FF, #FF95FF);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(165, 165, 255, 0.3);
+}
+
+.mood-btn.loving {
+    background: linear-gradient(135deg, #FFA5FF, #A5FFFF);
+}
+
+.mood-btn.loving:hover {
+    background: linear-gradient(135deg, #FF95FF, #95FFFF);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 165, 255, 0.3);
+}
+
+.mood-btn.hopeful {
+    background: linear-gradient(135deg, #A5FFFF, #8E9AAF);
+}
+
+.mood-btn.hopeful:hover {
+    background: linear-gradient(135deg, #95FFFF, #7A8BA0);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(165, 255, 255, 0.3);
+}
+
+/* Today's Entry Card */
+.today-card {
+    background: linear-gradient(135deg, #FEEAFA, #DEE2FF);
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    border: 2px solid rgba(142, 154, 175, 0.1);
+}
+
+.today-card.has-entry {
+    background: linear-gradient(135deg, #CBC0D3, #EFD3D7);
+}
+
+.today-entry {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.today-emoji {
+    font-size: 2rem;
+}
+
+.today-mood {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #8E9AAF;
+    text-transform: capitalize;
+}
+
+.today-time {
+    font-size: 0.9rem;
+    color: #8E9AAF;
+    opacity: 0.7;
+    margin-top: 0.5rem;
+}
+
+.no-entry {
+    color: #8E9AAF;
+    opacity: 0.7;
+    font-style: italic;
+}
+
+/* Mood Timeline */
+.mood-timeline {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.mood-timeline::-webkit-scrollbar {
+    width: 6px;
+}
+
+.mood-timeline::-webkit-scrollbar-track {
+    background: rgba(142, 154, 175, 0.1);
+    border-radius: 3px;
+}
+
+.mood-timeline::-webkit-scrollbar-thumb {
+    background: #8E9AAF;
+    border-radius: 3px;
+}
+
+.mood-timeline::-webkit-scrollbar-thumb:hover {
+    background: #7A8BA0;
+}
+
+.mood-entry {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4));
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid rgba(142, 154, 175, 0.1);
+    transition: all 0.3s ease;
+}
+
+.mood-entry:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(142, 154, 175, 0.2);
+}
+
+.mood-entry-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.mood-entry-emoji {
+    font-size: 1.5rem;
+}
+
+.mood-entry-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.mood-entry-mood {
+    font-weight: 500;
+    color: #8E9AAF;
+    text-transform: capitalize;
+    font-size: 1rem;
+}
+
+.mood-entry-date {
+    font-size: 0.85rem;
+    color: #8E9AAF;
+    opacity: 0.7;
+}
+
+.delete-btn {
+    background: linear-gradient(135deg, #EFD3D7, #FEEAFA);
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+    color: #8E9AAF;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.delete-btn:hover {
+    background: linear-gradient(135deg, #E8C8CD, #FDE0F5);
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(239, 211, 215, 0.3);
+}
+
+.no-history {
+    text-align: center;
+    color: #8E9AAF;
+    opacity: 0.7;
+    font-style: italic;
+    padding: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem 0.5rem;
+    }
+    
+    .main-title {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .mood-section,
+    .today-section,
+    .past-moods-section {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .mood-buttons {
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+        gap: 0.6rem;
+    }
+    
+    .mood-btn {
+        padding: 1rem 0.5rem;
+        min-height: 70px;
+    }
+    
+    .mood-emoji {
+        font-size: 1.5rem;
+    }
+    
+    .mood-text {
+        font-size: 0.8rem;
+    }
+    
+    .mood-entry {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+    
+    .mood-entry-info {
+        width: 100%;
+    }
+    
+    .delete-btn {
+        align-self: flex-end;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 1.75rem;
+    }
+    
+    .mood-buttons {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+    }
+    
+    .mood-btn {
+        padding: 0.8rem 0.4rem;
+        min-height: 65px;
+    }
+    
+    .mood-emoji {
+        font-size: 1.3rem;
+    }
+    
+    .mood-text {
+        font-size: 0.75rem;
+    }
+}
+
+/* Animation for new entries */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mood-entry.new-entry {
+    animation: fadeInUp 0.5s ease;
+}
+
+/* Success feedback animation */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.mood-btn.selected {
+    animation: pulse 0.6s ease;
+}
