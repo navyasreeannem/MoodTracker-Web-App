@@ -122,6 +122,11 @@ Potential features for future versions:
 No installation or setup required - it's a simple, self-contained web application.
 
 ---
+🌐 Project Deployment
+
+Project Name: Navya’s MoodTracker
+Status: ✅ Live
+Deployment Link: https://navyas-moodtracker-qolc6yows-navyasreeannem33-1470s-projects.vercel.app
 
 **Enjoy tracking your emotional journey!** 💜
 
