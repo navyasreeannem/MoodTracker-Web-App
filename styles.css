@@ -89,6 +89,66 @@ body {
     text-align: center;
 }
 
+.mood-subtitle {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #8E9AAF;
+    margin: 2rem 0 1.5rem 0;
+    text-align: center;
+}
+
+/* Diary Section */
+.diary-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
+    border-radius: 15px;
+    border: 1px solid rgba(142, 154, 175, 0.1);
+}
+
+.diary-label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #8E9AAF;
+    margin-bottom: 0.75rem;
+}
+
+.diary-textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid rgba(142, 154, 175, 0.2);
+    border-radius: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #8E9AAF;
+    background: rgba(255, 255, 255, 0.8);
+    resize: vertical;
+    min-height: 100px;
+    transition: all 0.3s ease;
+}
+
+.diary-textarea:focus {
+    outline: none;
+    border-color: #8E9AAF;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 0 3px rgba(142, 154, 175, 0.1);
+}
+
+.diary-textarea::placeholder {
+    color: #8E9AAF;
+    opacity: 0.6;
+}
+
+.character-count {
+    text-align: right;
+    font-size: 0.85rem;
+    color: #8E9AAF;
+    margin-top: 0.5rem;
+    opacity: 0.8;
+}
+
 /* Mood Buttons */
 .mood-buttons {
     display: grid;
@@ -363,10 +423,15 @@ body {
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    margin-bottom: 1rem;
 }
 
 .today-emoji {
     font-size: 2rem;
+}
+
+.today-details {
+    flex: 1;
 }
 
 .today-mood {
@@ -381,6 +446,30 @@ body {
     color: #8E9AAF;
     opacity: 0.7;
     margin-top: 0.5rem;
+}
+
+.today-diary {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(142, 154, 175, 0.2);
+}
+
+.today-diary .diary-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #8E9AAF;
+    margin-bottom: 0.5rem;
+}
+
+.today-diary .diary-content {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #8E9AAF;
+    opacity: 0.9;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 0.75rem;
+    border-radius: 8px;
+    border-left: 3px solid #8E9AAF;
 }
 
 .no-entry {
@@ -415,9 +504,6 @@ body {
 }
 
 .mood-entry {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4));
     border-radius: 12px;
     padding: 1rem;
@@ -431,10 +517,41 @@ body {
     box-shadow: 0 4px 15px rgba(142, 154, 175, 0.2);
 }
 
+.mood-entry-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
 .mood-entry-info {
     display: flex;
     align-items: center;
     gap: 1rem;
+}
+
+.mood-entry-diary {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(142, 154, 175, 0.15);
+}
+
+.mood-entry-diary .diary-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #8E9AAF;
+    margin-bottom: 0.4rem;
+}
+
+.mood-entry-diary .diary-content {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #8E9AAF;
+    opacity: 0.9;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 0.6rem;
+    border-radius: 6px;
+    border-left: 2px solid #8E9AAF;
 }
 
 .mood-entry-emoji {
@@ -506,6 +623,16 @@ body {
         margin-bottom: 1.5rem;
     }
     
+    .diary-section {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .diary-textarea {
+        min-height: 80px;
+        font-size: 0.9rem;
+    }
+    
     .mood-buttons {
         grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
         gap: 0.6rem;
@@ -524,7 +651,7 @@ body {
         font-size: 0.8rem;
     }
     
-    .mood-entry {
+    .mood-entry-main {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.75rem;
@@ -536,6 +663,12 @@ body {
     
     .delete-btn {
         align-self: flex-end;
+    }
+    
+    .today-entry {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
     }
 }
 
@@ -560,6 +693,16 @@ body {
     
     .mood-text {
         font-size: 0.75rem;
+    }
+    
+    .diary-section {
+        padding: 0.75rem;
+    }
+    
+    .diary-textarea {
+        min-height: 70px;
+        font-size: 0.85rem;
+        padding: 0.75rem;
     }
 }
 

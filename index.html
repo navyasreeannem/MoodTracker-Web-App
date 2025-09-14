@@ -25,7 +25,24 @@
 
         <!-- Mood Selection Section -->
         <section class="mood-section">
-            <h2 class="section-title">Choose your mood</h2>
+            <h2 class="section-title">How are you feeling today?</h2>
+            
+            <!-- Diary Entry Section -->
+            <div class="diary-section">
+                <label for="diaryEntry" class="diary-label">Share your thoughts about today (optional)</label>
+                <textarea 
+                    id="diaryEntry" 
+                    class="diary-textarea" 
+                    placeholder="Write about your day, experiences, thoughts, or anything you'd like to remember..."
+                    maxlength="500"
+                    rows="4"
+                ></textarea>
+                <div class="character-count">
+                    <span id="charCount">0</span>/500 characters
+                </div>
+            </div>
+            
+            <h3 class="mood-subtitle">Choose your mood</h3>
             <div class="mood-buttons">
                 <button class="mood-btn calm" data-mood="calm">
                     <span class="mood-emoji">😌</span>

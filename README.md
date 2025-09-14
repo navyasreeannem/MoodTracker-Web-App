@@ -124,3 +124,4 @@ No installation or setup required - it's a simple, self-contained web applicatio
 ---
 
 **Enjoy tracking your emotional journey!** 💜
+

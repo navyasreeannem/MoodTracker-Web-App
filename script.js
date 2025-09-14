@@ -29,6 +29,8 @@ const moodConfig = {
 const moodButtons = document.querySelectorAll('.mood-btn');
 const todayCard = document.getElementById('todayCard');
 const moodTimeline = document.getElementById('moodTimeline');
+const diaryEntry = document.getElementById('diaryEntry');
+const charCount = document.getElementById('charCount');
 
 // Initialize the app when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -44,6 +46,9 @@ function initializeApp() {
         button.addEventListener('click', handleMoodSelection);
     });
     
+    // Add event listener for diary textarea character count
+    diaryEntry.addEventListener('input', updateCharacterCount);
+    
     // Load and display existing data
     loadTodayMood();
     loadMoodHistory();
@@ -57,6 +62,7 @@ function initializeApp() {
  */
 function handleMoodSelection(event) {
     const selectedMood = event.currentTarget.dataset.mood;
+    const diaryText = diaryEntry.value.trim();
     const currentDate = getCurrentDate();
     
     // Add visual feedback
@@ -65,11 +71,15 @@ function handleMoodSelection(event) {
         event.currentTarget.classList.remove('selected');
     }, 600);
     
-    // Save mood to localStorage
-    saveMoodEntry(selectedMood, currentDate);
+    // Save mood and diary entry to localStorage
+    saveMoodEntry(selectedMood, currentDate, diaryText);
+    
+    // Clear the diary textarea after saving
+    diaryEntry.value = '';
+    updateCharacterCount();
     
     // Update UI
-    updateTodayDisplay(selectedMood, currentDate);
+    updateTodayDisplay(selectedMood, currentDate, diaryText);
     loadMoodHistory();
     
     // Show success feedback
@@ -77,11 +87,29 @@ function handleMoodSelection(event) {
 }
 
 /**
+ * Update character count for diary textarea
+ */
+function updateCharacterCount() {
+    const currentLength = diaryEntry.value.length;
+    charCount.textContent = currentLength;
+    
+    // Change color when approaching limit
+    if (currentLength > 450) {
+        charCount.style.color = '#FF6B6B';
+    } else if (currentLength > 400) {
+        charCount.style.color = '#FFA500';
+    } else {
+        charCount.style.color = '#8E9AAF';
+    }
+}
+
+/**
  * Save mood entry to localStorage
  * @param {string} mood - Selected mood
  * @param {string} date - Current date
+ * @param {string} diaryText - Diary entry text
  */
-function saveMoodEntry(mood, date) {
+function saveMoodEntry(mood, date, diaryText) {
     try {
         // Get existing entries or create new array
         const existingEntries = JSON.parse(localStorage.getItem('moodEntries')) || [];
@@ -91,10 +119,10 @@ function saveMoodEntry(mood, date) {
         
         if (todayIndex !== -1) {
             // Update existing entry
-            existingEntries[todayIndex] = { mood, date, timestamp: Date.now() };
+            existingEntries[todayIndex] = { mood, date, diaryText, timestamp: Date.now() };
         } else {
             // Add new entry
-            existingEntries.push({ mood, date, timestamp: Date.now() });
+            existingEntries.push({ mood, date, diaryText, timestamp: Date.now() });
         }
         
         // Sort entries by timestamp (newest first)
@@ -122,7 +150,7 @@ function loadTodayMood() {
         const todayEntry = existingEntries.find(entry => entry.date === currentDate);
         
         if (todayEntry) {
-            updateTodayDisplay(todayEntry.mood, todayEntry.date);
+            updateTodayDisplay(todayEntry.mood, todayEntry.date, todayEntry.diaryText);
         } else {
             // Show default message
             todayCard.innerHTML = '<p class="no-entry">No mood recorded for today yet</p>';
@@ -137,19 +165,31 @@ function loadTodayMood() {
  * Update today's mood display
  * @param {string} mood - Selected mood
  * @param {string} date - Current date
+ * @param {string} diaryText - Diary entry text
  */
-function updateTodayDisplay(mood, date) {
+function updateTodayDisplay(mood, date, diaryText) {
     const moodData = moodConfig[mood];
     const timeString = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    
+    let diaryHTML = '';
+    if (diaryText && diaryText.trim()) {
+        diaryHTML = `
+            <div class="today-diary">
+                <div class="diary-label">Today's thoughts:</div>
+                <div class="diary-content">${diaryText}</div>
+            </div>
+        `;
+    }
     
     todayCard.innerHTML = `
         <div class="today-entry">
             <span class="today-emoji">${moodData.emoji}</span>
-            <div>
+            <div class="today-details">
                 <div class="today-mood">${mood}</div>
                 <div class="today-time">Recorded at ${timeString}</div>
             </div>
         </div>
+        ${diaryHTML}
     `;
     
     todayCard.classList.add('has-entry');
@@ -173,18 +213,31 @@ function loadMoodHistory() {
             const formattedDate = formatDate(entry.date);
             const timeString = new Date(entry.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             
+            let diaryHTML = '';
+            if (entry.diaryText && entry.diaryText.trim()) {
+                diaryHTML = `
+                    <div class="mood-entry-diary">
+                        <div class="diary-label">Thoughts:</div>
+                        <div class="diary-content">${entry.diaryText}</div>
+                    </div>
+                `;
+            }
+            
             return `
                 <div class="mood-entry" data-timestamp="${entry.timestamp}">
-                    <div class="mood-entry-info">
-                        <span class="mood-entry-emoji">${moodData.emoji}</span>
-                        <div class="mood-entry-details">
-                            <div class="mood-entry-mood">${entry.mood}</div>
-                            <div class="mood-entry-date">${formattedDate} at ${timeString}</div>
+                    <div class="mood-entry-main">
+                        <div class="mood-entry-info">
+                            <span class="mood-entry-emoji">${moodData.emoji}</span>
+                            <div class="mood-entry-details">
+                                <div class="mood-entry-mood">${entry.mood}</div>
+                                <div class="mood-entry-date">${formattedDate} at ${timeString}</div>
+                            </div>
                         </div>
+                        <button class="delete-btn" onclick="deleteMoodEntry('${entry.timestamp}')">
+                            Delete
+                        </button>
                     </div>
-                    <button class="delete-btn" onclick="deleteMoodEntry('${entry.timestamp}')">
-                        Delete
-                    </button>
+                    ${diaryHTML}
                 </div>
             `;
         }).join('');
